@@ -87,7 +87,8 @@ npm i
 Create a .env.local file in the root of the repo with your OpenAI API Key:
 
 ```bash
-OPENAI_API_KEY=YOUR_KEY
+AZURE_API_KEY=YOUR_KEY
+AZURE_COMPLETION_ENDPOINT=YOUR_MODEL_DEPLOYMENT
 ```
 
 **4. Run App**

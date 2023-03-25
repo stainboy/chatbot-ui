@@ -103,14 +103,42 @@ export default function Home() {
       let isFirst = true;
       let text = "";
 
+      // async function readWithTimeout(reader, timeout) {
+      //   const timer = setTimeout(() => {
+      //     reader.releaseLock();
+      //   }, timeout);
+      //   const result = await reader.read();
+      //   clearTimeout(timer);
+      //   reader.releaseLock();
+      //   return result;
+      // }
+
+      
+
       while (!done) {
         if (stopConversationRef.current === true) {
           controller.abort();
           done = true;
           break;
         }
+
+        
+        const timer = setTimeout(() => {
+          try {
+          reader.cancel();
+            
+          } catch {
+            
+          }
+          // reader.releaseLock();
+          //done = true;
+        }, 2500);
         const { value, done: doneReading } = await reader.read();
+        clearTimeout(timer);
+        
+
         done = doneReading;
+        // await reader.closed;
         const chunkValue = decoder.decode(value);
 
         text += chunkValue;
